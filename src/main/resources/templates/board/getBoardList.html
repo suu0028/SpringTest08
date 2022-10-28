@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>게시글 목록보기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body th:align="center">
+<div align="center">
+<br>
+<h2> 게시글 목록보기 (<a th:href="@{/index.html}">처음으로</a>) </h2>
+<span sec:authorize="isAuthenticated()">
+	<b><font color="red" th:text="${session['member'].name}">
+	</font></b> 님 환영합니다
+	<a th:href="@{/system/logout.do}">로그아웃</a>&emsp;&emsp;
+</span>
+<br><br>
+
+<form action="getBoardList.do">
+	<tr>
+		<td>
+			<select name="searchCondition">
+				<option value="title">제 목</option>
+				<option value="name">작성자</option>
+			</select>
+		</td>
+		<td>
+			<input type="text" name="searchKeyword" size="58">
+		</td>
+		<td>
+			<input type="submit" value="검 색">
+		</td>
+	</tr>
+</form>
+
+
+<table border=1 >
+<tr align="center"> 
+ <th bgcolor="orange" width="60"> 번호 </th> 
+ <th bgcolor="orange" width="200"> 제목 </th> 
+ <th bgcolor="orange" width="100"> 작성자 </th>
+ <th bgcolor="orange" width="100"> 작성일 </th> 
+ <th bgcolor="orange" width="60"> 조회수 </th> 
+</tr>
+
+
+<tr align="center" th:each="board, state : ${boardList}"> 
+ <td th:text="${board.seq}"> 
+ <td>
+ 	<a th:href="@{/board/getBoard.do(seq=${board.seq})}" th:text="${board.title}"></a>
+ </td> 
+ <td th:text="${board.name}"> 
+ <td th:text="${#dates.format(board.createDate, 'yyyy-MM-dd')}">   <!-- Thymeleaf 데이터타입으로 날짜포맷 설정하기 -->
+ <td th:text="${board.cnt}"> 
+ </tr>
+
+</table>
+
+<br>
+<a th:href="@{/board/boardInsertForm.do}"> 새글등록 </a>
+
+</div>
+</body>
+</html>

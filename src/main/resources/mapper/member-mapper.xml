@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rubypaper.board.persistence.MemberDao">
+
+<!-- id값은 Dao 인터페이스의 메소드 이름과 매핑 -->
+<insert id="memberInsert" parameterType="com.rubypaper.board.domain.MemberVO">
+<![CDATA[
+	insert into member1026(id, password, name, role, enabled) values(#{id}, #{password}, #{name}, #{role}, #{enabled})
+]]>
+</insert>
+
+
+<select id="getMemberList" parameterType="com.rubypaper.board.domain.MemberVO" resultType="com.rubypaper.board.domain.MemberVO">
+	select * from member1026
+</select>
+
+
+<delete id="memberDelete" parameterType="com.rubypaper.board.domain.MemberVO">
+<![CDATA[
+   delete from member1026 where id =#{id}
+ ]]>
+</delete>
+
+<select id="getMember" parameterType="com.rubypaper.board.domain.MemberVO" resultType="com.rubypaper.board.domain.MemberVO">
+	select * from member1026 where id =#{id}
+</select>
+
+</mapper>

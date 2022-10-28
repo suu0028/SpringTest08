@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>회원 목록보기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body th:align="center">
+<div align="center">
+<br>
+<h2> 회원 목록보기 (<a th:href="@{/index.html}">처음으로</a>) </h2>
+
+<table border=1 >
+<tr align="center">
+ <th bgcolor="orange" width="120"> 아이디(삭제) </th> 
+ <th bgcolor="orange" width="100"> 비밀번호 </th> 
+ <th bgcolor="orange" width="100"> 이름 </th>
+ <th bgcolor="orange" width="100"> 권한 </th> 
+ <th bgcolor="orange" width="100"> 사용여부 </th> 
+</tr>
+
+
+<tr align="center" th:each="member : ${memberList}"> 
+ <td>
+ 	<a th:href="@{/board/memberDelete.do(id=${member.id}, writer=${member.id})}" th:text="${member.id}"></a>
+ </td>
+ <td th:text="${member.password}"> 
+ <td th:text="${member.name}"> 
+ <td th:text="${member.role}"> 
+ <td th:text="${member.enabled}"> 
+ </tr>
+
+</table>
+
+</div>
+</body>
+</html>

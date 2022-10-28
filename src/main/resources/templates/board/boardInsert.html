@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+	<title>게시글 등록하기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body th:align="center">
+<div align="center">
+<br>
+<h2> 게시글 등록하기 (<a th:href="@{index.html}">처음으로</a>) </h2>
+<form action="boardInsert.do">
+<table border=1 >
+<tr><td> 제목 </td> <td><input type="text" name="title" size="41"></td></tr>
+<tr><td> 작성자 </td> 
+	<td><input type="text" name="writer" th:value="${session['member'].id}"></td>
+</tr>
+<tr><td> 내용 </td> <td><textarea cols="40" rows="5" name="content"></textarea></td></tr>
+<tr><td align="center" colspan="2"><input type="submit" value="글등록"></td></tr>
+</table>
+</form>
+
+<br>
+<a th:href="@{/board/getBoardList.do}"> 목록보기 </a>
+
+</div>
+</body>
+</html>
